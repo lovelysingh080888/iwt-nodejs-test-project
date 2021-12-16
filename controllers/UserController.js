@@ -73,8 +73,7 @@ exports.register = async (req, res) => {
                         phone: req.body.phone,
                         is_active: req.body.is_active,
                     });
-                    user
-                        .save()
+                    user.save()
                         .then((user) => {
                             Mail.sendMail(user);
                             res.status(201).json({
@@ -83,9 +82,7 @@ exports.register = async (req, res) => {
                                 message: "Successfully Registered",
                             });
                         })
-                        .catch((err) => {
-                            res.status(400).json({ status: false, error: err });
-                        });
+                        .catch((err) =>console.log(err));
                 }
             });
         } else {
